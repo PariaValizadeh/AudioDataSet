@@ -122,5 +122,21 @@ When running `python src/train.py` you should see something like this:
 
 ![](https://github.com/ashleve/lightning-hydra-template/blob/resources/terminal.png)
 
+<br>
+
+##   Citation
+
+
+```
+@misc{,
+      title={AudioLC: }, 
+      author={Paria Vali Zadeh},
+      year={202.},
+      eprint={},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD},
+      url={https://arxiv.org/}, 
+}
+```
 
 <br>
