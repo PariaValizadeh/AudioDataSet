@@ -126,7 +126,6 @@ When running `python src/train.py` you should see something like this:
 
 ## Citation
 
-
 ```
 @misc{       ,
       title={AudioLC: }, 
@@ -139,4 +138,5 @@ When running `python src/train.py` you should see something like this:
 }
 ```
 
+<br>
 
