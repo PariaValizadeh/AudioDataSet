@@ -115,14 +115,6 @@ conda activate myenv
 pip install -r requirements.txt
 ```
 
-Template contains example with MNIST classification.<br>
-When running `python src/train.py` you should see something like this:
-
-<div align="center">
-
-![](https://github.com/ashleve/lightning-hydra-template/blob/resources/terminal.png)
-
-</div>
 
 <br>
 
