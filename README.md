@@ -122,6 +122,8 @@ When running `python src/train.py` you should see something like this:
 
 ![](https://github.com/ashleve/lightning-hydra-template/blob/resources/terminal.png)
 
+</div>
+
 <br>
 
 ## Citation
