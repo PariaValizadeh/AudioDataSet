@@ -1,3 +1,6 @@
 [submodule ".devcontainer"]
 	path = .devcontainer
 	url = git@github.com:raphaelschwinger/cuda-python-devcontainer.git
+[submodule "templates/lightning-hydra"]
+	path = templates/lightning-hydra
+	url = https://github.com/ashleve/lightning-hydra-template.git
