@@ -124,11 +124,11 @@ When running `python src/train.py` you should see something like this:
 
 <br>
 
-##   Citation
+## Citation
 
 
 ```
-@misc{,
+@misc{       ,
       title={AudioLC: }, 
       author={Paria Vali Zadeh},
       year={202.},
