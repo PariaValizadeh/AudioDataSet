@@ -29,3 +29,6 @@ experiment_meta:
   elevation_range: [-90, 90]  # Range of elevation angles in degrees
   frequency_range: [20, 20000]  # Frequency range
   category_list: ["speech", "noise", "music"]  # List of categories for the experiment
+
+# Device selection for the experiment
+selected_device: "hardware2"  # Choose between 'hardware1' or 'hardware2'

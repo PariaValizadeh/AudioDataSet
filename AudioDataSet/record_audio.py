@@ -9,48 +9,39 @@ import logging
 # Setup logger
 logging.basicConfig(level=logging.INFO)
 
+
 @hydra.main(version_base="1.3", config_path="configs", config_name="record_config")
 def record_audio(cfg: DictConfig):
     """
     Entry point for audio recording tasks.
     """
-    logger = logging.getLogger(__name__)
-    logger.info(f"Starting experiment {cfg.experiment_meta.experiment_id}...")
+    logger = get_logger(__name__)
+    logger.info(f"Selected device: {cfg.selected_device}")
 
-    # Metadata for the experiment
-    metadata = {
-        'experiment_id': cfg.experiment_meta.experiment_id,
-        'doa': cfg.experiment_meta.doa_range,
-        'elevation': cfg.experiment_meta.elevation_range,
-        'category': cfg.experiment_meta.category_list[0],  # Example, could be dynamic based on each experiment
-        'frequency': cfg.experiment_meta.frequency_range,
-        'gain': cfg.recorder.gain,
-        'amplitude': 1.0,  # Example, amplitude could be dynamic as well
-        'length': cfg.recorder.duration
-    }
-
-    # Initialize the recorder based on the selected device
-    if cfg.hardware1.type == "ReSpeaker":
-        logger.info("Initializing Recorder for ReSpeaker...")
-        recorder = RecorderHardware1(cfg.hardware1, metadata)
-    elif cfg.hardware2.type == "MiniDSP":
-        logger.info("Initializing Recorder for MiniDSP...")
-        recorder = RecorderHardware2(cfg.hardware2, metadata)
+    # Dynamically select the recorder based on the selected device in the config
+    if cfg.selected_device == "hardware1":
+        logger.info("Initializing Recorder for ReSpeaker (Hardware 1)...")
+        recorder = RecorderHardware1(cfg.hardware1, cfg.recorder)
+    elif cfg.selected_device == "hardware2":
+        logger.info("Initializing Recorder for MiniDSP (Hardware 2)...")
+        recorder = RecorderHardware2(cfg.hardware2, cfg.recorder)
     else:
-        raise ValueError(f"Unsupported device: {cfg.hardware1.type}")
+        raise ValueError(f"Unsupported device: {cfg.selected_device}")
 
     # Record audio
-    logger.info(f"Starting recording for device {cfg.hardware1.device_id}...")
-    recording = recorder.record()
+    logger.info(f"Starting recording with {cfg.selected_device}...")
+    data = recorder.record()
 
     # Save the recording
-    recorder.save(recording, sample_index=1)
+    logger.info("Saving recording...")
+    recorder.save(data)
 
     # Label the data
+    logger.info("Labeling the recorded data...")
     labeler = DataLabeler(cfg.recorder.labels_file)
-    labeler.add_labels([metadata], [{'filename': f"{metadata['experiment_id']}_file", **metadata}])
+    labeler.add_labels([cfg.selected_device], [data])
 
-    logger.info(f"Experiment {cfg.experiment_meta.experiment_id} completed!")
+    logger.info(f"Recording task completed for {cfg.selected_device}!")
 
 if __name__ == "__main__":
     record_audio()
