@@ -2,7 +2,7 @@
 name = "AudioDataSet"
 version = "0.1.1"
 description = "AudioDataSet: A data pipeline for audio Localization and Classification"
-authors = ["Paria Vali Zadeh <rsc@informatik.uni-kiel.de>"]
+authors = ["Paria Vali Zadeh <pvz@informatik.uni-kiel.de>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -64,6 +64,10 @@ numba = "0.60.0"
 numpy = "^1.26.4"
 sounddevice = "^0.5.1"
 wave = "^0.0.2"
+
+
+
+
 
 
 [tool.poetry.group.dev.dependencies]

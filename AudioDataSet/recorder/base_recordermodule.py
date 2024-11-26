@@ -4,7 +4,6 @@ import random
 from collections import Counter
 import lightning as L
 import pandas as pd
-import pyaudio
 import hydra
 from omegaconf import DictConfig
 import logging
@@ -13,7 +12,7 @@ import os
 import wave
 import sounddevice as sd
 import numpy as np
-from record_config import RecorderConfig
+from configs.record_config import RecorderConfig
 import datetime
 
 class AudioRecorder2:

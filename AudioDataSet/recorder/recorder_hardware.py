@@ -2,8 +2,8 @@ import os
 import numpy as np
 import wave
 import logging
-from AudioDataSet.recorder.base_recordermodule import AudioRecorder
-from record_config import RecorderConfig
+from recorder.base_recordermodule import AudioRecorder
+from configs.record_config import RecorderConfig
 
 class RecorderHardware1(AudioRecorder):
     """
