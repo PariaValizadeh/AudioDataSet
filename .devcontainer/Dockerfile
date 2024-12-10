@@ -1,7 +1,7 @@
 # Use a lightweight ARM64 Python 3.12 base image
 #change it if you use it on windows
 #FROM arm64v8/python:3.12-bullseye
-FROM ubuntu/python:3.12-24.04_stable
+FROM ubuntu/python:3.10-22.04_stable
 
 
 
