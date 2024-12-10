@@ -1,0 +1,41 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.238.0/containers/ubuntu
+{
+	"name": "PVZ-AudioDataSet-dev",
+	"build": {
+	  "dockerfile": "Dockerfile",
+	  "args": {
+		// Choose ARM64 base image compatible with Raspberry Pi
+		//"VARIANT": "arm64v8/ubuntu:20.04",  // Change to arm64v8 for ARM architecture
+		"VARIANT": "ubuntu:20.04",  // Change on linux
+	  }
+	},
+	"runArgs": [
+	  // Removed --gpus flag as Raspberry Pi does not have CUDA support
+	  "--shm-size=32gb"
+	],
+	"remoteUser": "vscode",
+	"customizations": {
+	  "vscode": {
+		"settings": {
+		  "terminal.integrated.defaultProfile.linux": "bash"
+		}
+	  }
+	},
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+	"workspaceFolder": "/workspace",
+	"mounts": [
+	  {
+		"source": "/dev/snd",  // Mount sound device for audio access
+		"target": "/dev/snd",
+		"type": "bind"
+	  }
+	],
+	"extensions": [
+		"ms-python.python",
+	    "ms-python.vscode-pylance",
+	    "github.copilot",
+	    "ms-toolsai.jupyter"
+	]
+  }
+  
