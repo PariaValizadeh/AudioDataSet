@@ -42,7 +42,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libreadline-dev \
     libsqlite3-dev \
     libffi-dev \
-    wget
+    wget\
+    portaudio19-dev\ 
+    alsa-utils
     
 COPY config/.tmux.conf /home/$USERNAME/.tmux.conf
 

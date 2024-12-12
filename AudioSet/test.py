@@ -1,7 +1,8 @@
 import sounddevice as sd
+print (sd.query_devices())
 
 # Explicitly select your device
-device_id = 1  # Replace with your device name from `sd.query_devices()`
+device_id = 2  # Replace with your device name from `sd.query_devices()`
 
 try:
     # Start a basic recording
