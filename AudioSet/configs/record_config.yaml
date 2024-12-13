@@ -11,13 +11,13 @@ recorder:
 
 hardware1:
   type: "ReSpeaker"
-  device_id: 1  # Device ID for Hardware 1
+  device_id: 2  # Device ID for Hardware 1
   channels: 4  # Number of channels for Hardware 1
   gain: 1.0  # Gain for Hardware 1
 
 hardware2:
   type: "MiniDSP"  # Type of Hardware 2
-  device_id: 2  # Device ID for Hardware 2
+  device_id: 3  # Device ID for Hardware 2
   channels: 8  # Number of channels for Hardware 2
   gain: 1.5  # Gain for Hardware 2
 

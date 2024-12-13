@@ -5,7 +5,7 @@ import wave
 duration = 5  # seconds
 sample_rate = 16000
 channels = 2
-device = 'hw:1,0'  # Adjust as per your device
+device = 2  # Adjust as per your device
 
 print("Recording...")
 recording = sd.rec(

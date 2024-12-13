@@ -55,9 +55,14 @@ def record_audio(cfg: DictConfig):
         logger.info(f"Recording sample {i+1}/{cfg.experiment_meta.sample_count}...")
         recording = recorder.record()
         if recording is not None:
+            print("Calling save method ...")
             recorder.save(recording, f"sample_{i+1}")
             logger.info(f"Sample {i+1} saved successfully.")
+        else:
+            print("Recording failed; skipping save.")
         time.sleep(1)
 
 if __name__ == "__main__":
     record_audio()
+
+        
