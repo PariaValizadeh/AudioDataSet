@@ -43,6 +43,8 @@ experiment_meta:
   
   doa: 10  # Example: Direction of Arrival for this experiment
   elevation: 0  # Example: Elevation for this experiment
+  frequency: 2000 # Frequency range in Hz
+  amplitude: 1  # Amplitude range
 
   
 

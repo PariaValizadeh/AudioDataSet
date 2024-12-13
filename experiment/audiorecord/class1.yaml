@@ -34,6 +34,8 @@ experiment_meta:
   selected_categories:  # Categories selected for the current experiment
     - "horn",
   category: "horn"
+  frequency: 2000 # Frequency range in Hz
+  amplitude: 1  # Amplitude range
 
 
 # Device selection for the experiment

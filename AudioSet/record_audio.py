@@ -36,6 +36,9 @@ def record_audio(cfg: DictConfig):
         "frequency_range": cfg.experiment_meta.frequency_range,
         "amplitude_range": cfg.experiment_meta.amplitude_range,
         "experiment_id": cfg.experiment_meta.experiment_id,
+        "category": cfg.experiment_meta.selected_categories,
+        "frequency": cfg.experiment_meta.frequency,
+        "amplitude": cfg.experiment_meta.amplitude,
     }
 
     # Dynamically select the recorder based on the selected device in the config
