@@ -3,7 +3,7 @@ recorder:
   duration: 10  # Duration of the recording in seconds
   sample_rate: 16000  # Sample rate in Hz
   channels: 8
-  gain: 100.0  # Gain applied to all channels
+  gain: 1  # Gain applied to all channels
   labels_file: "labels.csv"  # File where labels will be stored
 
 hardware1:
@@ -17,11 +17,11 @@ hardware2:
   type: "MiniDSP"
   device_id: 3  # Device ID for hardware 2
   channels: 8  # Number of channels for hardware 2
-  gain: 100.0  # Gain for hardware 2
+  gain: 1  # Gain for hardware 2
   sample_rate: 16000  # Sample rate in Hz
 
 experiment_meta:
-  experiment_id: "exp01"  # Unique experiment identifier
+  experiment_id: "exp10"  # Unique experiment identifier
   experiment_type: "typeA"  # Type of experiment (e.g., "typeA")
   run_date: "2024-11-26"  # Date of the experiment
   sample_count: 1  # Number of samples to record
@@ -29,16 +29,16 @@ experiment_meta:
   elevation_range: [-90, 90]  # Range of elevation angles in degrees
   frequency_range: [20, 20000]  # Frequency range
   category_list: ["speech", "noise", "music"]  # List of categories for the experiment
-  doa: 10  # Example: Direction of Arrival for this experiment
+  doa: 80  # Example: Direction of Arrival for this experiment
   elevation: 0  # Example: Elevation for this experiment
   selected_categories:  # Categories selected for the current experiment
     - "horn",
   category: "horn"
-  frequency: 2000 # Frequency range in Hz
+  frequency: 333 # Frequency range in Hz
   amplitude: 1  # Amplitude range
 
 
 # Device selection for the experiment
-selected_device: "hardware1"  # Choose between 'hardware1' or 'hardware2'
+selected_device: "hardware2"  # Choose between 'hardware1' or 'hardware2'
 
 

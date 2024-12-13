@@ -3,7 +3,7 @@ recorder:
   duration: 10  # Duration of the recording in seconds
   sample_rate: 16000  # Sample rate in Hz
   channels: 8
-  gain: 100.0  # Gain applied to all channels
+  gain: 1  # Gain applied to all channels
   labels_file: "labels.csv"  # File where labels will be stored
 
 hardware1:
@@ -17,7 +17,7 @@ hardware2:
   type: "MiniDSP"
   device_id: 3  # Device ID for hardware 2
   channels: 8  # Number of channels for hardware 2
-  gain: 100.0  # Gain for hardware 2
+  gain: 1  # Gain for hardware 2
   sample_rate: 16000  # Sample rate in Hz
 
 experiment_meta:

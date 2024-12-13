@@ -1,12 +1,12 @@
 # Main experiment config file
 # Device selection for the experiment
-selected_device: "hardware1"  # Choose between 'hardware1' or 'hardware2'
+selected_device: "hardware2"  # Choose between 'hardware1' or 'hardware2'
 recorder:
   output_dir: "recordings"  # Directory where the recordings will be saved
   duration: 10  # Duration of each recording in seconds
   sample_rate: 16000  # Sample rate in Hz
   channels: 8  # Number of channels for selected hardware
-  gain: 1.5  # Gain for the selected hardware
+  gain: 1  # Gain for the selected hardware
   labels_file: "labels.csv"  # File where labels will be stored
 
 hardware1:
@@ -19,7 +19,7 @@ hardware2:
   type: "MiniDSP"  # Type of Hardware 2
   device_id: 3  # Device ID for Hardware 2
   channels: 8  # Number of channels for Hardware 2
-  gain: 1.5  # Gain for Hardware 2
+  gain: 100  # Gain for Hardware 2
 
 # Experiment metadata and parameters
 experiment_meta:
