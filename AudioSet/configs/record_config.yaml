@@ -26,7 +26,7 @@ experiment_meta:
   experiment_id: "exp01"  # Unique experiment identifier
   experiment_type: "category_sound"  # Type of experiment (e.g., "sound")
   run_date: "2024-11-26"  # Date of the experiment
-  sample_count: 8  # Number of samples to record
+  sample_count: 1  # Number of samples to record
   doa_range: {min: 0, max: 360}  # DOA range in degrees
   elevation_range: {min: -90, max: 90}  # Elevation range in degrees
   frequency_range: {min: 20, max: 2000}  # Frequency range in Hz
