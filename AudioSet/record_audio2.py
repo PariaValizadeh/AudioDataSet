@@ -4,7 +4,7 @@ import lightning as L
 from omegaconf import OmegaConf, open_dict
 from omegaconf.errors import ConfigAttributeError
 import json
-from birdset import utils
+from AudioSet import utils
 import pyrootutils
 from pathlib import Path
 

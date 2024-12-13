@@ -58,7 +58,9 @@ class AudioRecorder:
         os.makedirs(self.config.output_dir, exist_ok=True)
 
         # Apply gain to recording
-        recording = (recording * self.gain * 32767).astype(np.int16)
+        recording = (recording * self.gain).astype(np.int16)
+        #recording = (recording * self.gain * 32767).astype(np.int16)
+        
 
         # Get the current date and time for unique filenames
         current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")

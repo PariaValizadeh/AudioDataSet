@@ -4,7 +4,7 @@ selected_device: "hardware1"  # Choose between 'hardware1' or 'hardware2'
 recorder:
   output_dir: "recordings"  # Directory where the recordings will be saved
   duration: 10  # Duration of each recording in seconds
-  sample_rate: 48000  # Sample rate in Hz
+  sample_rate: 16000  # Sample rate in Hz
   channels: 8  # Number of channels for selected hardware
   gain: 1.5  # Gain for the selected hardware
   labels_file: "labels.csv"  # File where labels will be stored
@@ -43,7 +43,7 @@ experiment_meta:
   
   doa: 10  # Example: Direction of Arrival for this experiment
   elevation: 0  # Example: Elevation for this experiment
-  frequency: 2000 # Frequency range in Hz
+  frequency: 1 # Frequency range in Hz
   amplitude: 1  # Amplitude range
 
   
