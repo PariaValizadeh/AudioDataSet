@@ -1,0 +1,8 @@
+# @package _global_
+#package global is neccessary!
+defaults:
+  record_config: record_config.yaml
+  -override /recorder: respeaker.yaml
+  -override /hardware1: respeaker.yaml
+  -override /experiment_meta: respeaker.yaml
+
