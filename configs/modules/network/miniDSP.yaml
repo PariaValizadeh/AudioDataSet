@@ -9,9 +9,8 @@ defaults:
   #-override /hydra: default.yaml
 
 
-
 # Device selection for the experiment
-selected_device: "hardware1"  # Choose between 'hardware1' or 'hardware2'
+selected_device: "hardware2"  # Choose between 'hardware1' or 'hardware2'
 
 recorder:
   output_dir: "recordings"
@@ -21,13 +20,12 @@ recorder:
   gain: 1  # Gain applied to all channels
   labels_file: "labels.csv"  # File where labels will be stored
 
-hardware1:
-  type: "ReSpeaker"
-  device_id: 2  # Device ID for Hardware 1
-  channels: 6  # Number of channels for Hardware 1
-  gain: 1.0  # Gain for Hardware 1 
+hardware2:
+  type: "MiniDSP"
+  device_id: 3  # Device ID for hardware 2
+  channels: 8  # Number of channels for hardware 2
+  gain: 1  # Gain for hardware 2
   sample_rate: 16000  # Sample rate in Hz
-
 
 experiment_meta:
   experiment_id: "exp10"  # Unique experiment identifier
