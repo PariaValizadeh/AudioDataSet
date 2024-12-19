@@ -39,6 +39,6 @@ experiment_meta:
 
 
 # Device selection for the experiment
-selected_device: "hardware2"  # Choose between 'hardware1' or 'hardware2'
+selected_device: "hardware1"  # Choose between 'hardware1' or 'hardware2'
 
 
