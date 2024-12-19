@@ -1,5 +1,7 @@
 # Main experiment config file
 # Device selection for the experiment
+#The ALSA hardware number (hw:X,Y) is the identifier used by ALSA to access the physical devices.
+#Sounddevice device indices (like 0, 1, etc.) are assigned by sounddevice based on the devices it finds. These indices don't directly correlate with ALSA's hw:X,Y numbers.
 selected_device: "hardware2"  # Choose between 'hardware1' or 'hardware2'
 recorder:
   output_dir: "recordings"  # Directory where the recordings will be saved
@@ -11,13 +13,13 @@ recorder:
 
 hardware1:
   type: "ReSpeaker"
-  device_id: 2  # Device ID for Hardware 1
+  device_id: 1  # Device ID for Hardware 1
   channels: 4  # Number of channels for Hardware 1
   gain: 1.0  # Gain for Hardware 1
 
 hardware2:
   type: "MiniDSP"  # Type of Hardware 2
-  device_id: 3  # Device ID for Hardware 2
+  device_id: 2  # Device ID for Hardware 2
   channels: 8  # Number of channels for Hardware 2
   gain: 100  # Gain for Hardware 2
 

@@ -1,6 +1,6 @@
 import hydra
 from omegaconf import DictConfig
-from recorder.recorder_hardware import RecorderHardware1, RecorderHardware2
+from recorder.recorder_hardware import RecorderHardware
 from recorder.data_labeler import DataLabeler
 from utils.logger import get_logger
 import logging
@@ -44,10 +44,10 @@ def record_audio(cfg: DictConfig):
     # Dynamically select the recorder based on the selected device in the config
     if cfg.selected_device == "hardware1":
         logger.info("Initializing Recorder for ReSpeaker (Hardware 1)...")
-        recorder = RecorderHardware1(hardware_config, cfg.recorder, metadata)
+        recorder = RecorderHardware(hardware_config, cfg.recorder, metadata)
     elif cfg.selected_device == "hardware2":
         logger.info("Initializing Recorder for MiniDSP (Hardware 2)...")
-        recorder = RecorderHardware2(hardware_config, cfg.recorder, metadata)
+        recorder = RecorderHardware(hardware_config, cfg.recorder, metadata)
     else:
         raise ValueError(f"Unsupported device: {cfg.selected_device}")
 

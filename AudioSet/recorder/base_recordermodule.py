@@ -48,7 +48,7 @@ class AudioRecorder:
             sd.wait()  # Wait for the recording to finish
             return recording
         except Exception as e:
-            print(f"An error occurred during recording: {e}")
+            print(f"An error occurred during recording {self.device_id}: {e}")
             return None
 
     def save(self, recording, filename):
