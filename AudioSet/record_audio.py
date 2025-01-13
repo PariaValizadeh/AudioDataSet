@@ -1,5 +1,5 @@
 import hydra
-from omegaconf import DictConfig
+from omegaconf import DictConfig, OmegaConf
 from recorder.recorder_hardware import RecorderHardware
 from recorder.data_labeler import DataLabeler
 from utils.logger import get_logger
@@ -22,11 +22,18 @@ logging.basicConfig(level=logging.INFO)
 @hydra.main(version_base="1.3", config_path="configs", config_name="record_config")
 def record_audio(cfg: DictConfig):
     logger = get_logger(__name__)
+    logger.info("Final configuration")
+    logger.info(OmegaConf.to_yaml(cfg))
+
     logger.info(f"Selected device: {cfg.selected_device}")
+    
 
     # Extract the hardware configuration for the selected device
     hardware_config = cfg[cfg.selected_device]
+    recorder_config = cfg.recorder
     logger.info(f"Using hardware config: {hardware_config}")
+    logger.info(f"Using recorder config: {recorder_config}")
+    recorder_config.channels= hardware_config.channels
 
     # Generate metadata dictionary
     metadata = {
@@ -39,6 +46,9 @@ def record_audio(cfg: DictConfig):
         "category": cfg.experiment_meta.selected_categories,
         "frequency": cfg.experiment_meta.frequency,
         "amplitude": cfg.experiment_meta.amplitude,
+
+        
+
     }
 
     # Dynamically select the recorder based on the selected device in the config

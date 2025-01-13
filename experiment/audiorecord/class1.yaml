@@ -1,3 +1,12 @@
+# @package _global_
+#package global is neccessary!
+defaults:
+  record_config: record_config.yaml
+  -override /recorder: respeaker.yaml
+  -override /hardware1: respeaker.yaml
+  -override /experiment_meta: respeaker.yaml
+
+
 recorder:
   output_dir: "recordings"
   duration: 10  # Duration of the recording in seconds
@@ -39,6 +48,6 @@ experiment_meta:
 
 
 # Device selection for the experiment
-selected_device: "hardware1"  # Choose between 'hardware1' or 'hardware2'
+selected_device: "hardware2"  # Choose between 'hardware1' or 'hardware2'
 
 

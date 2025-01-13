@@ -27,6 +27,12 @@ class AudioRecorder:
         # Dynamically fetch hardware-specific attributes
         #self.device_id = getattr(hardware_config, "device_id", "default_device_id")
         self.device_id = hardware_config.device_id if hasattr(hardware_config,"device_id") else "default_device_id"
+        if hasattr(hardware_config,"type"):
+            self.type = hardware_config.type
+        elif hasattr(config.type):
+            self.type= config.type
+        else:
+            raise ValueError("the 'type' attribute is mssing in both hardware and config")
         self.channels = getattr(hardware_config, "channels", config.channels)
         self.gain = getattr(hardware_config, "gain", config.gain)
 
@@ -69,7 +75,7 @@ class AudioRecorder:
         for channel in range(self.channels):
             # Generate filename using metadata
             print(self.metadata)
-            filename = f"{self.metadata['experiment_id']}_{self.device_id}_ch{channel+1}_DOA{self.metadata['doa']}_elev{self.metadata['elevation']}_cat{'category'}_freq{self.metadata['frequency']}_gain{self.gain}_amp{self.metadata['amplitude']}_len{self.config.duration}_{current_time}.wav"
+            filename = f"{self.metadata['experiment_id']}_{self.type}_ch{channel+1}_DOA{self.metadata['doa']}_elev{self.metadata['elevation']}_cat{'category'}_freq{self.metadata['frequency']}_gain{self.gain}_amp{self.metadata['amplitude']}_len{self.config.duration}_{current_time}.wav"
             file_path = os.path.join(self.config.output_dir, filename)
 
             channel_data = recording[:, channel]
