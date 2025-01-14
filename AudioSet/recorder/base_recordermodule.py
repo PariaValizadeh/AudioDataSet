@@ -93,13 +93,20 @@ class AudioRecorder:
             
             print(f"Saved channel {channel+1} to {file_path}")
         
-         # Create the label entry for this experiment
+        # Ensure `category` is a string
+        category = self.metadata.get("category")
+        if isinstance(category, list):
+            category = ", ".join(map(str, category))  # Convert list to comma-separated string
+        elif not isinstance(category, (str, type(None))):
+            category = str(category)
+
+        # Create a dictionary for this experiment's metadata
         label_entry = {
             "doa": self.metadata.get("doa"),
             "elevation": self.metadata.get("elevation"),
             "frequency": self.metadata.get("frequency"),
             "amplitude": self.metadata.get("amplitude"),
-            "category": self.metadata.get("category"),
+            "category": category,
             "gain": self.gain,
             "duration": self.config.duration,
         }
@@ -107,7 +114,7 @@ class AudioRecorder:
         # Define the label file path
         label_file_path = os.path.join(self.config.output_dir, "experiment_labels.json")
 
-        # Try to load the existing label file or initialize an empty list
+        # Load the existing label file or initialize an empty list
         if os.path.exists(label_file_path):
             with open(label_file_path, 'r') as label_file:
                 try:
@@ -124,4 +131,4 @@ class AudioRecorder:
         with open(label_file_path, 'w') as label_file:
             json.dump(label_data, label_file, indent=4)
 
-        print(f"Label file updated at {label_file_path}")
+        print(f"Updated label file at {label_file_path}")
