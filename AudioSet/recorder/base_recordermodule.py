@@ -58,25 +58,30 @@ class AudioRecorder:
             return None
 
     def save(self, recording, filename):
-        """
-        Saves each channel's recording with metadata (DOA, frequency, etc.) as part of the filename.
-        """
-        os.makedirs(self.config.output_dir, exist_ok=True)
+    
+        # Generate timestamp for the experiment folder (e.g., 2024-11-26_14-30-00)
+        experiment_timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
+        experiment_folder = os.path.join(self.config.output_dir, experiment_timestamp)
+
+        # Create the experiment folder if it doesn't exist
+        os.makedirs(experiment_folder, exist_ok=True)
 
         # Apply gain to recording
         recording = (recording * self.gain).astype(np.int16)
-        #recording = (recording * self.gain * 32767).astype(np.int16)
-        
 
         # Get the current date and time for unique filenames
-        current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        
+        current_time = datetime.datetime.now().strftime("%H-%M-%S")
+        current_folder = os.path.join(experiment_folder, current_time)
+        # create subfolder for the run
+        os.makedirs(current_folder, exist_ok=True)
+
         # Save a file for each channel with metadata in the filename
         for channel in range(self.channels):
             # Generate filename using metadata
-            print(self.metadata)
-            filename = f"{self.metadata['experiment_id']}_{self.type}_ch{channel+1}_DOA{self.metadata['doa']}_elev{self.metadata['elevation']}_cat{'category'}_freq{self.metadata['frequency']}_gain{self.gain}_amp{self.metadata['amplitude']}_len{self.config.duration}_{current_time}.wav"
-            file_path = os.path.join(self.config.output_dir, filename)
+            filename = f"{experiment_timestamp}_{self.type}_ch{channel+1}_DOA{self.metadata['doa']}_elev{self.metadata['elevation']}_cat{'category'}_freq{self.metadata['frequency']}_gain{self.gain}_amp{self.metadata['amplitude']}_len{self.config.duration}_{current_time}.wav"
+            
+            # Construct file path in the experiment folder
+            file_path = os.path.join(current_folder, filename)
 
             channel_data = recording[:, channel]
             with wave.open(file_path, "w") as wf:
@@ -84,4 +89,5 @@ class AudioRecorder:
                 wf.setsampwidth(2)  # 16-bit PCM
                 wf.setframerate(self.config.sample_rate)
                 wf.writeframes(channel_data.tobytes())
+            
             print(f"Saved channel {channel+1} to {file_path}")
