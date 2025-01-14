@@ -43,3 +43,37 @@ experiment_meta:
   elevation: 10
   frequency: 500
   amplitude: 0.7
+  #def save(self, recording, filename):
+    """
+    Saves each channel's recording with metadata (DOA, frequency, etc.) as part of the filename.
+    Creates a new folder inside the recordings directory using the timestamp of the experiment.
+    """
+    # Generate timestamp for the experiment folder (e.g., 2024-11-26_14-30-00)
+    experiment_timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    experiment_folder = os.path.join(self.config.output_dir, experiment_timestamp)
+
+    # Create the experiment folder if it doesn't exist
+    os.makedirs(experiment_folder, exist_ok=True)
+
+    # Apply gain to recording
+    recording = (recording * self.gain).astype(np.int16)
+
+    # Get the current date and time for unique filenames
+    current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+    # Save a file for each channel with metadata in the filename
+    for channel in range(self.channels):
+        # Generate filename using metadata
+        filename = f"{experiment_timestamp}_{self.type}_ch{channel+1}_DOA{self.metadata['doa']}_elev{self.metadata['elevation']}_cat{'category'}_freq{self.metadata['frequency']}_gain{self.gain}_amp{self.metadata['amplitude']}_len{self.config.duration}_{current_time}.wav"
+        
+        # Construct file path in the experiment folder
+        file_path = os.path.join(experiment_folder, filename)
+
+        channel_data = recording[:, channel]
+        with wave.open(file_path, "w") as wf:
+            wf.setnchannels(1)  # Mono channel
+            wf.setsampwidth(2)  # 16-bit PCM
+            wf.setframerate(self.config.sample_rate)
+            wf.writeframes(channel_data.tobytes())
+        
+        print(f"Saved channel {channel+1} to {file_path}")
