@@ -3,6 +3,7 @@ import numpy as np
 import os
 import wave
 import datetime
+import json  # To handle appending labels as a list
 class AudioRecorder:
     """
     Base class for handling audio recording from hardware devices.
@@ -91,3 +92,33 @@ class AudioRecorder:
                 wf.writeframes(channel_data.tobytes())
             
             print(f"Saved channel {channel+1} to {file_path}")
+        
+        # Create the label entry for this experiment
+        label_entry = [
+            self.metadata['doa'],
+            self.metadata['elevation'],
+            self.metadata['frequency'],
+            self.metadata['amplitude'],
+            self.metadata['category'],
+            self.gain,
+            self.config.duration,
+        ]
+
+        # Define the label file path
+        label_file_path = os.path.join(self.config.output_dir, "experiment_labels.json")
+
+        # Try to load the existing label file or initialize an empty list
+        if os.path.exists(label_file_path):
+            with open(label_file_path, 'r') as label_file:
+                label_data = json.load(label_file)
+        else:
+            label_data = []
+
+        # Append the new label entry to the list
+        label_data.append(label_entry)
+
+        # Save the updated label data to the file
+        with open(label_file_path, 'w') as label_file:
+            json.dump(label_data, label_file, indent=4)
+
+        print(f"Label file updated at {label_file_path}")
