@@ -93,18 +93,13 @@ class AudioRecorder:
             
             print(f"Saved channel {channel+1} to {file_path}")
         
-   # Convert metadata to a JSON-serializable format
-        metadata_serializable = OmegaConf.to_container(
-            self.metadata, resolve=True, enum_to_str=True
-        )
-
-        # Create the label entry for this experiment
+         # Create the label entry for this experiment
         label_entry = {
-            "doa": metadata_serializable.get("doa"),
-            "elevation": metadata_serializable.get("elevation"),
-            "frequency": metadata_serializable.get("frequency"),
-            "amplitude": metadata_serializable.get("amplitude"),
-            "category": metadata_serializable.get("category"),
+            "doa": self.metadata.get("doa"),
+            "elevation": self.metadata.get("elevation"),
+            "frequency": self.metadata.get("frequency"),
+            "amplitude": self.metadata.get("amplitude"),
+            "category": self.metadata.get("category"),
             "gain": self.gain,
             "duration": self.config.duration,
         }
