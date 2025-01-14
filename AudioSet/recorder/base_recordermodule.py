@@ -94,15 +94,15 @@ class AudioRecorder:
             print(f"Saved channel {channel+1} to {file_path}")
         
         # Create the label entry for this experiment
-        label_entry = [
-            self.metadata['doa'],
-            self.metadata['elevation'],
-            self.metadata['frequency'],
-            self.metadata['amplitude'],
-            self.metadata['category'],
-            self.gain,
-            self.config.duration,
-        ]
+        label_entry = {
+            "doa": self.metadata.get("doa"),
+            "elevation": self.metadata.get("elevation"),
+            "frequency": self.metadata.get("frequency"),
+            "amplitude": self.metadata.get("amplitude"),
+            "category": self.metadata.get("category"),
+            "gain": self.gain,
+            "duration": self.config.duration,
+        }
 
         # Define the label file path
         label_file_path = os.path.join(self.config.output_dir, "experiment_labels.json")
@@ -110,7 +110,10 @@ class AudioRecorder:
         # Try to load the existing label file or initialize an empty list
         if os.path.exists(label_file_path):
             with open(label_file_path, 'r') as label_file:
-                label_data = json.load(label_file)
+                try:
+                    label_data = json.load(label_file)
+                except json.JSONDecodeError:
+                    label_data = []  # If file exists but is empty or corrupted, initialize it
         else:
             label_data = []
 
