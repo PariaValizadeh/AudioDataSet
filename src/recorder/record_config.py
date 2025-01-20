@@ -15,7 +15,7 @@ class RecorderConfig:
         device (Optional[int]): Device ID or name. Defaults to None for the default device.
         gain (float): Gain factor to apply to each channel.
     """
-    output_dir: str = "recordings"
+    output_dir: str = "datasets"
     duration: int = 5
     sample_rate: int = 48000
     channels: int = 8

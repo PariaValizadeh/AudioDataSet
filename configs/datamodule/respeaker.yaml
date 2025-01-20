@@ -2,10 +2,16 @@
 #package global is neccessary!
 defaults:
   record_config: record_config.yaml
-  -override /recorder: respeaker.yaml
-  -override /hardware1: respeaker.yaml
-  -override /experiment_meta: respeaker.yaml
+  -override /recorder: recorder_config.yaml
+  #-override /hardware: hardware_config.yaml
+  #-override /experiment_meta: experiment_config.yaml
+  #-override /path:  default.yaml
+  #-override /hydra: default.yaml
 
+
+
+# Device selection for the experiment
+selected_device: "hardware1"  # Choose between 'hardware1' or 'hardware2'
 
 recorder:
   output_dir: "recordings"
@@ -17,17 +23,11 @@ recorder:
 
 hardware1:
   type: "ReSpeaker"
-  device_id: 1  # Device ID for Hardware 1
+  device_id: 2  # Device ID for Hardware 1
   channels: 6  # Number of channels for Hardware 1
   gain: 1.0  # Gain for Hardware 1 
   sample_rate: 16000  # Sample rate in Hz
 
-hardware2:
-  type: "MiniDSP"
-  device_id: 2  # Device ID for hardware 2
-  channels: 8  # Number of channels for hardware 2
-  gain: 100 # Gain for hardware 2
-  sample_rate: 16000  # Sample rate in Hz
 
 experiment_meta:
   experiment_id: "exp10"  # Unique experiment identifier
@@ -47,7 +47,6 @@ experiment_meta:
   amplitude: 1  # Amplitude range
 
 
-# Device selection for the experiment
-selected_device: "hardware2"  # Choose between 'hardware1' or 'hardware2'
+
 
 

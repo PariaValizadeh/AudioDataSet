@@ -3,7 +3,7 @@ import numpy as np
 import wave
 import logging
 from recorder.base_recordermodule import AudioRecorder
-from configs.record_config import RecorderConfig
+from recorder.record_config import RecorderConfig
 import re
 
 

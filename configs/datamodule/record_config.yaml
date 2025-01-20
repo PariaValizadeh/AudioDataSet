@@ -1,7 +1,7 @@
 # Main experiment config file
 
 recorder:
-  output_dir: "recordings"  # Directory where the recordings will be saved
+  output_dir: "datasets"  # Directory where the recordings will be saved
   duration: 10  # Duration of each recording in seconds
   sample_rate: 16000  # Sample rate in Hz
   channels: 8  # Number of channels for selected hardware
