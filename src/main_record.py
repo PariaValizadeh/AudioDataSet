@@ -8,7 +8,9 @@ import time
 import sys
 import os
 from recorder.record_config import HardwareConfig
-
+import pyrootutils
+from pathlib import Path
+'''
 # Dynamically add the root of the project to the Python path
 project_root = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(project_root)
@@ -18,8 +20,25 @@ sys.path.append(os.path.join(project_root, ".."))
 
 # Setup logger
 logging.basicConfig(level=logging.INFO)
+'''
 
-@hydra.main(version_base="1.3", config_path="/workspace/configs/datamodule", config_name="config")
+root = pyrootutils.setup_root(
+    search_from=__file__,
+    indicator=[".git"],
+    pythonpath=True,
+    dotenv=True,
+)
+
+_HYDRA_PARAMS = {
+    "version_base": None,
+    "config_path": str(root / "configs/datamodule"),
+    "config_name": "config.yaml",
+}
+
+
+#@hydra.main(version_base="1.3", config_path="/workspace/configs/datamodule", config_name="config")
+# @utils.register_custom_resolvers(**_HYDRA_PARAMS)
+@hydra.main(**_HYDRA_PARAMS)
 def record_audio(cfg: DictConfig):
     logger = get_logger(__name__)
     logger.info("Final configuration")
