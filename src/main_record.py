@@ -42,7 +42,9 @@ _HYDRA_PARAMS = {
 def record_audio(cfg: DictConfig):
     logger = get_logger(__name__)
     logger.info("Final configuration")
-    logger.info(OmegaConf.to_yaml(cfg))
+    #logger.info(OmegaConf.to_yaml(cfg))
+    logger.info(f"Loaded configuration: {OmegaConf.to_yaml(cfg)}")
+
 
     logger.info(f"Selected device: {cfg.selected_device}")
     

@@ -1,43 +1,28 @@
-# class1.yaml
-experiment:
-  selected_device: "hardware2"  # or hardware1, depending on the experiment
+# @package _global_
+defaults:
+  - /workspace/configs/datamodule/config.yaml    # Load the main config if necessary
+  - override /hardware: hardware_config/miniDSP_config.yaml  # Override hardware config
+  - override /experiment_meta: experiment_config/default_experiment_meta.yaml  # Override experiment meta
+  - override /experiment_config: experiment/audiorecord/class1.yaml  # Override experiment-specific settings
 
-recorder:
-  output_dir: "datasets"
-  duration: 10
+# Select device and other settings for the experiment
+selected_device: "hardware2"  # Choose between hardware1 or hardware2
+
+
+# Override hardware configurations
+hardware1:
+  type: ReSpeaker
+  device_id: 1
+  channels: 6
+  gain: 1.0
   sample_rate: 16000
+
+hardware2:
+  type: miniDSP
+  device_id: 2
   channels: 8
-  gain: 1
-  labels_file: "labels.csv"
+  gain: 100
+  sample_rate: 16000
 
-hardware:
-  hardware1:
-    type: "ReSpeaker"
-    device_id: 1
-    channels: 6
-    gain: 1.0
-    sample_rate: 16000
-
-  hardware2:
-    type: "MiniDSP"
-    device_id: 2
-    channels: 8
-    gain: 100
-    sample_rate: 16000
-
-experiment_meta:
-  experiment_id: "exp10"
-  experiment_type: "typeA"
-  run_date: "2024-11-26"
-  sample_count: 1
-  doa_range: [0, 360]
-  elevation_range: [-90, 90]
-  frequency_range: [20, 20000]
-  category_list: ["speech", "noise", "music"]
-  doa: 80
-  elevation: 0
-  selected_categories:
-    - "horn"
-  category: "horn"
-  frequency: 333
-  amplitude: 1
+# Device selection for the experiment
+selected_device: "hardware2"  # Choose between 'hardware1' or 'hardware2'
