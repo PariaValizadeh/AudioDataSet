@@ -19,7 +19,7 @@ sys.path.append(os.path.join(project_root, ".."))
 # Setup logger
 logging.basicConfig(level=logging.INFO)
 
-@hydra.main(version_base="1.3", config_path="/workspace/configs/datamodule", config_name="record_config")
+@hydra.main(version_base="1.3", config_path="/workspace/configs/datamodule", config_name="config")
 def record_audio(cfg: DictConfig):
     logger = get_logger(__name__)
     logger.info("Final configuration")
@@ -29,7 +29,7 @@ def record_audio(cfg: DictConfig):
     
 
     # Extract the hardware configuration for the selected device
-    hardware_config = cfg[cfg.selected_device]
+    hardware_config = cfg.hardware[cfg.selected_device]
     recorder_config = cfg.recorder
     logger.info(f"Using hardware config: {hardware_config}")
     logger.info(f"Using recorder config: {recorder_config}")
