@@ -1,1 +1,1 @@
-from configs.record_config import RecorderConfig,ExperimentConfig
+from src.recorder.record_config import RecorderConfig,HardwareConfig,ExperimentMeta

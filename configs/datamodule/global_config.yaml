@@ -1,0 +1,37 @@
+# global_config.yaml
+
+recorder:
+  output_dir: "datasets"
+  duration: 10  # Duration of each recording in seconds
+  sample_rate: 16000  # Sample rate in Hz
+  gain: 1  # Default gain for all hardware
+  labels_file: "labels.csv"  # File where labels will be stored
+  channels: 4
+
+experiment_meta:
+  experiment_id: "exp01"  # Default experiment ID
+  experiment_type: "category_sound"
+  run_date: "2024-11-26"
+  sample_count: 1  # Number of samples to record
+  doa_range:
+    min: 0
+    max: 360
+  elevation_range:
+    min: -90
+    max: 90
+  frequency_range:
+    min: 20
+    max: 2000
+  amplitude_range:
+    min: 0.1
+    max: 1.0
+  categories:
+    - "horn"
+    - "noise"
+    - "music"
+  selected_categories:
+    - "horn"
+  doa: 10  # Example: Direction of Arrival for this experiment
+  elevation: 0  # Example: Elevation for this experiment
+  frequency: 1  # Frequency in Hz
+  amplitude: 1  # Amplitude for this experiment

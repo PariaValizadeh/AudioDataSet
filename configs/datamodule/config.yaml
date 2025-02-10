@@ -1,0 +1,23 @@
+# config.yaml
+defaults:
+  - _self_
+  - global_config.yaml  # Base global configuration
+  - hardware_config: respeaker_config.yaml  # Default hardware (can be overridden at runtime)
+  - experiment_config: default_experiment_meta.yaml  # Default experiment (can be overridden at runtime)
+
+# Device selection for the experiment
+selected_device: "hardware1"  # Use hardware1 by default (this can be overridden in the experiment config)
+
+hardware:
+  hardware1:
+    type: ReSpeaker
+    device_id: 1
+    channels: 4
+    gain: 1.0
+    sample_rate: 16000
+  hardware2:
+    type: miniDSP
+    device_id: 2
+    channels: 2
+    gain: 1.0
+    sample_rate: 16000

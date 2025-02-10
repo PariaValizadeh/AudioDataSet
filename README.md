@@ -93,6 +93,18 @@ The directory structure of new project looks like this:
 ├── pyproject.toml            <- Configuration options for testing and linting
 ├── requirements.txt          <- File for installing python dependencies
 └── README.md
+project_root/
+│
+├── configs/
+│   └── experiment/
+│       └── audiorecord/
+│           └── exp1.yaml   # Your experiment config file
+│   └── datamodule/
+│       └── global_config.yaml
+│       └── hardware_config/
+│           └── miniDSP_config.yaml
+│       └── default_experiment_meta.yaml
+
 ```
 
 <br>

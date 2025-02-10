@@ -3,6 +3,8 @@
 defaults:
   record_config: record_config.yaml
   -override /recorder: respeaker.yaml
-  -override /hardware1: respeaker.yaml
+  -override /hardware: respeaker.yaml
   -override /experiment_meta: respeaker.yaml
 
+# Device selection for the experiment
+selected_device: "hardware2"  # Choose between 'hardware1' or 'hardware2'

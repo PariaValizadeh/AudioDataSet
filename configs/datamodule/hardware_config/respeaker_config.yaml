@@ -1,0 +1,7 @@
+# hardware1_config.yaml
+hardware1:
+  type: "ReSpeaker"
+  device_id: 1
+  channels: 4
+  gain: 1.0
+  sample_rate: 16000
