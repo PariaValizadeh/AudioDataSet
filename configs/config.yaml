@@ -1,0 +1,15 @@
+# config.yaml
+# @package _global_
+
+defaults:
+  - _self_
+  - hardware_config: miniDSP_config.yaml  # Default hardware (can be overridden at runtime)
+  - experiment_config: default_experiment_meta.yaml  # Default experiment (can be overridden at runtime)
+  - recorder_config: recorder_config.yaml
+  
+
+
+
+# Device selection for the experiment
+selected_device: "hardware2"  # Use hardware1 by default (this can be overridden in the experiment config)
+

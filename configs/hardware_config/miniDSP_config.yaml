@@ -1,0 +1,8 @@
+# hardware2_config.yaml
+hardware_config:
+  hardware2:
+    type: "MiniDSP"
+    device_id: 2
+    channels: 8
+    gain: 1.0
+    sample_rate: 16000

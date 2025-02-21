@@ -7,7 +7,7 @@ import logging
 import time
 import sys
 import os
-from recorder.record_config import HardwareConfig
+from recorder.record_config import HardwareConfig,RecorderConfig,ExperimentConfig
 import pyrootutils
 from pathlib import Path
 '''
@@ -31,7 +31,7 @@ root = pyrootutils.setup_root(
 
 _HYDRA_PARAMS = {
     "version_base": None,
-    "config_path": str(root / "configs/datamodule"),
+    "config_path": str(root / "configs"),
     "config_name": "config.yaml",
 }
 
@@ -45,28 +45,29 @@ def record_audio(cfg: DictConfig):
     #logger.info(OmegaConf.to_yaml(cfg))
     logger.info(f"Loaded configuration: {OmegaConf.to_yaml(cfg)}")
 
-
+    
     logger.info(f"Selected device: {cfg.selected_device}")
     
 
     # Extract the hardware configuration for the selected device
-    hardware_config = cfg.hardware[cfg.selected_device]
-    recorder_config = cfg.recorder
+    hardware_config = cfg.hardware_config.hardware_config[cfg.selected_device]
+    recorder_config = cfg.recorder_config.recorder
+    experiment_config = cfg.experiment_config
     logger.info(f"Using hardware config: {hardware_config}")
     logger.info(f"Using recorder config: {recorder_config}")
     recorder_config.channels= hardware_config.channels
 
     # Generate metadata dictionary
     metadata = {
-        "doa": cfg.experiment_meta.doa,
-        "elevation": cfg.experiment_meta.elevation,
-        "selected_categories": cfg.experiment_meta.selected_categories,
-        "frequency_range": cfg.experiment_meta.frequency_range,
-        "amplitude_range": cfg.experiment_meta.amplitude_range,
-        "experiment_id": cfg.experiment_meta.experiment_id,
-        "category": cfg.experiment_meta.selected_categories,
-        "frequency": cfg.experiment_meta.frequency,
-        "amplitude": cfg.experiment_meta.amplitude,
+        "doa": experiment_config.doa,
+        "elevation": experiment_config.elevation,
+        "selected_categories": experiment_config.selected_categories,
+        "frequency_range": experiment_config.frequency_range,
+        "amplitude_range": experiment_config.amplitude_range,
+        "experiment_id": experiment_config.experiment_id,
+        "category": experiment_config.selected_categories,
+        "frequency": experiment_config.frequency,
+        "amplitude": experiment_config.amplitude,
 
         
 
@@ -75,18 +76,18 @@ def record_audio(cfg: DictConfig):
     # Dynamically select the recorder based on the selected device in the config
     if cfg.selected_device == "hardware1":
         logger.info("Initializing Recorder for ReSpeaker (Hardware 1)...")
-        recorder = RecorderHardware(hardware_config, cfg.recorder, metadata)
+        recorder = RecorderHardware(hardware_config, recorder_config, metadata)
     elif cfg.selected_device == "hardware2":
         logger.info("Initializing Recorder for MiniDSP (Hardware 2)...")
-        recorder = RecorderHardware(hardware_config, cfg.recorder, metadata)
+        recorder = RecorderHardware(hardware_config, recorder_config, metadata)
     else:
         raise ValueError(f"Unsupported device: {cfg.selected_device}")
 
-    logger.info(f"Starting experiment: {cfg.experiment_meta.experiment_id}")
+    logger.info(f"Starting experiment: {experiment_config.experiment_id}")
     
     # Record samples for the given sample count
-    for i in range(cfg.experiment_meta.sample_count):
-        logger.info(f"Recording sample {i+1}/{cfg.experiment_meta.sample_count}...")
+    for i in range(experiment_config.sample_count):
+        logger.info(f"Recording sample {i+1}/{experiment_config.sample_count}...")
         recording = recorder.record()
         if recording is not None:
             print("Calling save method ...")
